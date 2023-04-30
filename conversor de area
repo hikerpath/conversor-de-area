@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4845619359224579"
+     crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <title>Conversor de Pressão</title>
+    
+    
+    <style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th, td, tr {
+			text-align: center;
+          
+			padding: 3px;
+			border: 1px solid black;
+          
+          	
+		}
+        img {
+            display: block;
+            margin: 0 auto;
+   		 }
+    input {
+      width: 30%;
+    }
+
+		th {
+			background-color: #dddddd;
+         
+        
+		}
+
+    span {
+     text-align: left; 
+     
+      }
+     p {
+      
+      text-align: justify;
+   }
+      
+
+
+	</style>
+  </head>
+  <body>
+    
+    <h2>Conversor de Pressão</h2>
+
+ 
+    
+  
+    <script>  
+      
+      
+      // adiciona um ouvinte de eventos de teclado à janela
+window.addEventListener("keydown", function(event) {
+  // verifica se a tecla pressionada é Enter
+  if (event.key === "Enter") {
+    // chama a função converter
+    converter();
+  }
+});
+    
+ // Array com as informações
+ let area_From = [ 
+   ["d_m2", 1],
+  ["d_cm2", 10000],
+  ["d_mm2", 1000000],
+  ["d_km2", 0.000001],
+  ["d_a", 0.01],
+  ["d_ha", 0.0001],
+  ["d_acre", 0.0002471054],
+  ["d_b", 1e+28],
+  ["d_mi2", 3.861e-7],
+  ["d_mi2 (Naut)", 2.916e-7],
+  ["d_ft2", 10.7639104167],
+  ["d_in2", 1550.0031000062],
+  ["d_yd2", 1.1959899891],
+  ["d_rod2", 0.0395367038]
+   ];
+ let area_To = [
+["p_m2", 1],
+  ["p_cm2", 10000],
+  ["p_mm2", 1000000],
+  ["p_km2", 0.000001],
+  ["p_a", 0.01],
+  ["p_ha", 0.0001],
+  ["p_acre", 0.0002471054],
+  ["p_b", 1e+28],
+  ["p_mi2", 3.861e-7],
+  ["p_mi2 (Naut)", 2.916e-7],
+  ["p_ft2", 10.7639104167],
+  ["p_in2", 1550.0031000062],
+  ["p_yd2", 1.1959899891],
+  ["p_rod2", 0.0395367038]
+]
+
+;
+
+
+
+
+function converter() {
+  let fromValue;
+  let fromFactor;
+  let fromIndex;
+
+  // encontra o último elemento preenchido pelo usuário em ordem crescente
+  for (let i = 0; i < area_From.length; i++) {
+    let fromId = area_From[i][0];
+    let inputValue = document.getElementById(fromId).value;
+    if (inputValue) {
+      fromValue = inputValue;
+      fromFactor = area_From[i][1];
+      fromIndex = i;
+    }
+  }
+
+  // atualiza lastFilledIndex se encontrou um elemento preenchido pelo usuário
+  if (fromIndex !== undefined) {
+    lastFilledIndex = fromIndex;
+  }
+
+  // limpa os valores dos elementos de entrada do array area_From, exceto o último elemento de entrada preenchido pelo usuário
+  for (let i = 0; i < area_From.length; i++) {
+    if (i !== lastFilledIndex) {
+      let fromId = area_From[i][0];
+      document.getElementById(fromId).value = "";
+    }
+  }
+
+  // calcula os valores a serem atribuídos aos elementos de entrada do array area_To
+  for (let i = 0; i < area_To.length; i++) {
+    let toId = area_To[i][0];
+    let toFactor = area_To[i][1];
+    document.getElementById(toId).value = (toFactor * fromValue / fromFactor);
+  }
+}
+
+
+
+	  //-------------- fim converter ------------------------------
+      
+
+    </script>
+</body>
+</html>
+
+<table id="minha-tabela">
+<tbody>
+  <tr>
+                                <td colspan="2"><label><span>De</span></label></td>
+                                <td colspan="2"><label><span>Para</span></label></td>
+                                
+  <td></td>
+                                
+                            </tr>
+                            <tr>
+                                <td class="text_right"><span>m</span><sup>2</sup></td>
+                                <td><input type="number" id="d_m2"  ></td>
+                                <td class="text_right"><span>m</span><sup>2</sup></td>
+                                <td><input type="number" id="p_m2"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>cm</span><sup>2</sup></td>
+                                <td><input type="number" id="d_cm2"  > </td>
+                                <td class="text_right"><span>cm</span><sup>2</sup></td>
+                                <td><input type="number" id="p_cm2"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>mm</span><sup>2</sup></td>
+                                <td><input type="number" id="d_mm2"  ></td>
+                                <td class="text_right"><span>mm</span><sup>2</sup></td>
+                                <td><input type="number" id="p_mm2"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>km</span><sup>2</sup></td>
+                                <td><input type="number" id="d_km2"  ></td>
+                                <td class="text_right"><span>km</span><sup>2</sup></td>
+                                <td><input type="number" id="p_km2"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>a</span></td>
+                                <td><input type="number" id="d_a"  ></td>
+                                <td class="text_right"><span>a</span></td>
+                                <td><input type="number" id="p_a"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>ha</span></td>
+                                <td><input type="number" id="d_ha"  ></td>
+                                <td class="text_right"><span>ha</span></td>
+                                <td><input type="number" id="p_ha"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>acre</span></td>
+                                <td><input type="number" id="d_acre"  ></td>
+                                <td class="text_right"><span>acre</span></td>
+                                <td><input type="number" id="p_acre"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>b</span></td>
+                                <td><input type="number" id="d_b"  ></td>
+                                <td class="text_right"><span>b</span></td>
+                                <td><input type="number" id="p_b"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>mi</span><sup>2</sup></td>
+                                <td><input type="number" id="d_mi2"  ></td>
+                                <td class="text_right"><span>mi</span><sup>2</sup></td>
+                                <td><input type="number" id="p_mi2"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>mi</span><sup>2</sup> (Naut)</td>
+                                <td><input type="number" id="d_mi2 (Naut)"  ></td>
+                                <td class="text_right"><span>mi</span><sup>2</sup> (Naut)</td>
+                                <td><input type="number" id="p_mi2 (Naut)"  readonly="" ></td>
+                               
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>ft</span><sup>2</sup></td>
+                                <td><input type="number" id="d_ft2"  ></td>
+                                <td class="text_right"><span>ft</span><sup>2</sup></td>
+                                <td><input type="number" id="p_ft2"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>in</span><sup>2</sup></td>
+                                <td><input type="number" id="d_in2"  ></td>
+                                <td class="text_right"><span>in</span><sup>2</sup></td>
+                                <td><input type="number" id="p_in2"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>yd</span><sup>2</sup></td>
+                                <td><input type="number" id="d_yd2"  ></td>
+                                <td class="text_right"><span>yd</span><sup>2</sup></td>
+                                <td><input type="number" id="p_yd2"  readonly="" ></td>
+                                
+                            </tr>
+
+                            <tr>
+                                <td class="text_right"><span>rod</span><sup>2</sup></td>
+                                <td><input type="number" id="d_rod2"  ></td>
+                                <td class="text_right"><span>rod</span><sup>2</sup></td>
+                                <td><input type="number" id="p_rod2"  readonly="" ></td>
+                               
+                            </tr>
+                            <tr>
+    <td colspan="6">
+        <hr>
+    </td>
+</tr>
+<tr>
+    <td colspan="6" style="text-align: center" >
+        <button onclick="converter()">Converter</button>
+      <button onclick="window.location.href='http://www.projetistaspe.com.br/p/conversor.html'">Voltar para conversor</button>
+    
+        
+        <p id="resultado"></p>
+
+    </td>
+</tr>
+
+</tbody>
+</table>
